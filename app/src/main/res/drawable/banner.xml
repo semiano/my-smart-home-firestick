@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 320x180 TV banner shown in the Fire TV app row. Placeholder art: house outline + accent bar. -->
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="320dp"
+    android:height="180dp"
+    android:viewportWidth="320"
+    android:viewportHeight="180">
+    <path android:fillColor="#0E1116" android:pathData="M0,0h320v180h-320z" />
+    <path
+        android:strokeColor="#F2F4F7"
+        android:strokeWidth="8"
+        android:strokeLineJoin="round"
+        android:fillColor="#00000000"
+        android:pathData="M120,96 L160,60 L200,96 L200,132 L120,132 Z" />
+    <path android:fillColor="#F5A524" android:pathData="M148,108h24v24h-24z" />
+    <path android:fillColor="#F5A524" android:pathData="M110,148h100v6h-100z" />
+</vector>
