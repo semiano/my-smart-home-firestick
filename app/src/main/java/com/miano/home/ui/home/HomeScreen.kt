@@ -7,6 +7,8 @@ import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.ExperimentalLayoutApi
+import androidx.compose.foundation.layout.FlowRow
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxHeight
@@ -141,7 +143,7 @@ private fun LivingRoom(
 
     Column(verticalArrangement = Arrangement.spacedBy(14.dp)) {
         Row(
-            modifier = Modifier.fillMaxWidth().height(230.dp),
+            modifier = Modifier.fillMaxWidth().height(262.dp),
             horizontalArrangement = Arrangement.spacedBy(16.dp),
         ) {
             HeroCard(watching, onLaunch, Modifier.weight(1f).fillMaxHeight())
@@ -192,6 +194,7 @@ private fun HeroCard(watching: ContinueWatching?, onLaunch: (AppShortcut) -> Uni
     }
 }
 
+@OptIn(ExperimentalLayoutApi::class)
 @Composable
 private fun TonightCard(tonight: TonightSummary?, modifier: Modifier) {
     Column(
@@ -199,7 +202,7 @@ private fun TonightCard(tonight: TonightSummary?, modifier: Modifier) {
             .background(MianoColors.Surface, RoundedCornerShape(14.dp))
             .border(1.dp, MianoColors.Border, RoundedCornerShape(14.dp))
             .padding(18.dp),
-        verticalArrangement = Arrangement.spacedBy(10.dp),
+        verticalArrangement = Arrangement.spacedBy(8.dp),
     ) {
         Text("Tonight", fontSize = 16.sp, fontWeight = FontWeight.SemiBold, color = MianoColors.Text)
         if (tonight == null) {
@@ -220,7 +223,10 @@ private fun TonightCard(tonight: TonightSummary?, modifier: Modifier) {
                 }
             }
         }
-        Row(horizontalArrangement = Arrangement.spacedBy(6.dp)) {
+        FlowRow(
+            horizontalArrangement = Arrangement.spacedBy(6.dp),
+            verticalArrangement = Arrangement.spacedBy(6.dp),
+        ) {
             tonight.status.forEach { StatusChip(it) }
         }
     }

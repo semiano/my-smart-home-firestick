@@ -15,7 +15,23 @@ This is **phase 1**: a Kotlin + Compose for TV app with the Living Room screen. 
 | `app/src/main/java/com/miano/home/ui/home/` | Living Room screen and its parts |
 | `scripts/` | Install over Wi-Fi ADB, list package names |
 
-## 1. Build the APK (Windows)
+## Quick start: Docker build + TV emulator (no Android Studio)
+
+```bash
+powershell -File scripts/docker-build.ps1
+```
+
+```bash
+powershell -File scripts/emulator.ps1
+```
+
+- `docker-build.ps1` builds `app-debug.apk` inside Docker. The Gradle cache and the debug signing key are kept in Docker volumes (`miano-gradle-cache`, `miano-android-keys`), so every build is signed the same way and updates install cleanly. Delete the `miano-android-keys` volume and you'll have to uninstall the app before the next install.
+- `emulator.ps1` installs a portable JDK, the Android SDK and an **Android TV 9** emulator into `%LOCALAPPDATA%\MianoHome` (about 3–4 GB, first run only). It then starts the TV and installs and opens Miano Home. Later runs: add `-NoInstall`.
+- The emulator runs on Windows, not in Docker. On Windows 10, WSL2 can't give containers the virtualization they need. It uses Windows Hypervisor Platform (WHPX) for speed.
+- Android TV 9 matches Fire OS 7's Android base, but it isn't Fire OS. There's no Amazon Appstore, Disney+, Fubo or YouTube, so their tiles show "isn't installed". Test real app launching on the Fire Stick.
+- Keyboard in the emulator: arrows = D-pad, Enter = Select, Esc = Back, Home = Home.
+
+## 1. Build the APK with Android Studio (Windows)
 
 1. Install **Android Studio**. It includes Java 17 and the Android SDK.
 2. **File → Open** this folder. Android Studio downloads Gradle 8.9 and the dependencies on first sync.
